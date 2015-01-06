@@ -3,17 +3,14 @@
   /**
    * ImageEncoder constructor
    * @param {String} path
+   * @param {Number} width
+   * @param {Number} height
    * @constructor
    */
-  function ImageEncoder(path) {
-    
-    if (!path) {
-      throw new Error('Invalid argument');
-    }
-    
+  function ImageEncoder(path, width, height) {
     this.path = path;
-    this.width = null;
-    this.height = null;
+    this.width = width || 1;
+    this.height = height || 1;
   }
 
   /**
@@ -21,11 +18,6 @@
    * @param {String} path
    */
   ImageEncoder.prototype.setPath = function (path) {
-
-    if (!path) {
-      throw new Error('Invalid argument');
-    }
-
     this.path = path;
   };
 
@@ -40,22 +32,23 @@
   };
   
   /**
-   * Generate datauri
+   * Generate dataURI
    * @returns {Promise}
    */
-  ImageEncoder.prototype.generateDataURI = function () {
+  ImageEncoder.prototype.getDataURI = function () {
 
-    var width = this.width;
-    var height = this.height;
-    var path = this.path;
+    var that = this;
 
     return new Promise(function (resolve, reject) {
+      
+      var image = new Image();
+      image.setAttribute('crossOrigin','anonymous');
 
       var onLoad = function (e) {
 
         var canvas = document.createElement('canvas');
-        canvas.width = width ? width : image.width;
-        canvas.height = height ? height : image.height;
+        canvas.width = that.width ? that.width : image.width;
+        canvas.height = that.height ? that.height : image.height;
 
         var context = canvas.getContext('2d');
         context.drawImage(image, 0, 0, canvas.width, canvas.height);
@@ -74,11 +67,9 @@
         reject(e);
       };
 
-      var image = new Image();
-      image.setAttribute('crossOrigin','anonymous');
       image.addEventListener('load', onLoad);
       image.addEventListener('error', onError);
-      image.src = path;
+      image.src = that.path;
     });
   };
   
