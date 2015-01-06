@@ -1,0 +1,25 @@
+{
+  "name": "image-encoder",
+  "version": "0.1.0",
+  "description": "Encode image into dataURI",
+  "main": "index.js",
+  "scripts": {
+    "compile": "6to5 src/image-encoder-es6.js > src/image-encoder.js",
+    "minify": "uglify src/image-encoder.js > src/image-encoder.min.js",
+    "build": "npm run compile && npm run minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1000ch/image-encoder.git"
+  },
+  "author": "1000ch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/1000ch/image-encoder/issues"
+  },
+  "homepage": "https://github.com/1000ch/image-encoder",
+  "devDependencies": {
+    "6to5": "^2.5.0",
+    "uglifyjs": "^2.3.6"
+  }
+}
