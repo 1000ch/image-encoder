@@ -8,7 +8,7 @@
    * @constructor
    */
   function ImageEncoder(path, width, height) {
-    this.path = path;
+    this.path = path || '';
     this.width = width || 1;
     this.height = height || 1;
   }
@@ -18,7 +18,7 @@
    * @param {String} path
    */
   ImageEncoder.prototype.setPath = function (path) {
-    this.path = path;
+    this.path = path || '';
   };
 
   /**
