@@ -16,7 +16,7 @@ $ bower install 1000ch/image-encoder
 
 ```javascript
 var ie = new ImageEncoder('path/to/image.png');
-ie.generateDataURI().then(function onFulfilled(datauri) {
+ie.getDataURI().then(function onFulfilled(datauri) {
   console.log(datauri);
 }, function onRejected (error) {
   console.log(error);
