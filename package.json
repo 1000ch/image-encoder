@@ -4,7 +4,7 @@
   "description": "Encode image into dataURI",
   "main": "index.js",
   "scripts": {
-    "compile": "6to5 src/image-encoder-es6.js > src/image-encoder.js",
+    "compile": "babel src/image-encoder-es6.js > src/image-encoder.js",
     "minify": "uglify src/image-encoder.js > src/image-encoder.min.js",
     "build": "npm run compile && npm run minify"
   },
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/1000ch/image-encoder",
   "devDependencies": {
-    "6to5": "^2.5.0",
+    "babel": "^4.6.5",
     "uglifyjs": "^2.3.6"
   }
 }
