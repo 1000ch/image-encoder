@@ -1,4 +1,4 @@
-export class ImageEncoder {
+export default class ImageEncoder {
 
   constructor(path = '', width = 1, height = 1) {
     this.path = path;
@@ -22,7 +22,7 @@ export class ImageEncoder {
       let image = new Image();
       image.setAttribute('crossOrigin','anonymous');
 
-      let onLoad = (e) => {
+      const onLoad = e => {
 
         let canvas = document.createElement('canvas');
         canvas.width = this.width ? this.width : image.width;
@@ -35,7 +35,7 @@ export class ImageEncoder {
         resolve(canvas.toDataURL('image/png', 1));
       };
 
-      let onError = (e) => {
+      const onError = e => {
 
         image.removeEventListener('load', onLoad);
         image.removeEventListener('error', onError);

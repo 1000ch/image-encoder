@@ -2,11 +2,12 @@
   "name": "image-encoder",
   "version": "0.1.0",
   "description": "Encode image into dataURI",
-  "main": "index.js",
   "scripts": {
-    "compile": "babel src/image-encoder-es6.js > src/image-encoder.js",
-    "minify": "uglify src/image-encoder.js > src/image-encoder.min.js",
-    "build": "npm run compile && npm run minify"
+    "postinstall": "npm run build",
+    "babel": "babel src/image-encoder.js --out-file image-encoder.js",
+    "minify": "uglifyjs image-encoder.js > image-encoder.min.js",
+    "clean": "rm image-encoder.js",
+    "build": "npm run babel && npm run minify && npm run clean"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,7 @@
   },
   "homepage": "https://github.com/1000ch/image-encoder",
   "devDependencies": {
-    "babel": "^4.6.5",
-    "uglifyjs": "^2.3.6"
+    "babel": "^5.8.23",
+    "uglifyjs": "^2.4.10"
   }
 }
